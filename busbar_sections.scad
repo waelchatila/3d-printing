@@ -32,15 +32,15 @@ difference(){
  cube([busses_l, bus_w + (wall*2),bus_h + (wall*2)], center=false);
  // cutouts
  union(){
-	// the bus itself
+//	// the bus itself
     for( i= [0:(sections-1)]){
-        translate([i*section_l+(i+1)*wall,wall,wire_hole_v_offset+wall]) 
-            cube([section_l,bus_w,bus_h+wall], center = false);
-    
-    
-	// wire holes 
+        translate([i*section_l+(i+1)*wall,wall,wall]) 
+            cube([section_l,bus_w,bus_h+wall+1000], center = false);
+//    
+//    
+//	// wire holes 
         for( j= [0:(num_wire_holes-1)]){
-            translate([wire_hole_spacing/2+wire_hole_spacing*j+(section_l*i)+(i+1)*wall,1+bus_w+wall*2,wall+wall]) rotate([90,0,0]) 
+            translate([wire_hole_spacing/2+wire_hole_spacing*j+(section_l*i)+(i+1)*wall,1+bus_w+wall*2,wall+wire_hole_diameter/2+wire_hole_v_offset]) rotate([90,0,0]) 
                 cylinder(h=bus_w+(wall*2)+2, r = wire_hole_diameter/2, center=false);
         }
     }
